@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - /Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/bin/Debug/net9.0-maccatalyst/maccatalyst-x64/RestaurantApp_FullImp.app/Contents/MonoBundle/libe_sqlite3.dylib

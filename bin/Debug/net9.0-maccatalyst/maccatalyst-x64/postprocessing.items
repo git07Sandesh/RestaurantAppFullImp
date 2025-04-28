@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="RestaurantApp_FullImp.app/Contents/MacOS/RestaurantApp_FullImp">
+      <IsAppExtension>false</IsAppExtension>
+      <BCSymbolMapName>RestaurantApp_FullImp.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>RestaurantApp_FullImp.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/obj/Debug/net9.0-maccatalyst/maccatalyst-x64/mtouch-symbols.list</SymbolFile>
+      <DSymName>RestaurantApp_FullImp.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp</SourceProjectPath>
+      <IsXPCService></IsXPCService>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

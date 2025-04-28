@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - --entitlements /Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/obj/Debug/net9.0-maccatalyst/maccatalyst-x64/Entitlements.xcent /Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/bin/Debug/net9.0-maccatalyst/maccatalyst-x64/RestaurantApp_FullImp.app

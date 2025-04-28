@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="RestaurantApp_FullImp.Project.Views.MenuDashboardPage"
+    Title="Menu Dashboard">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <!-- Search and Filters -->
+        <Entry x:Name="searchBar" Placeholder="Search by Name..." TextChanged="OnSearchTextChanged"/>
+        
+        <Picker x:Name="typeFilter" Title="Filter by Type" SelectedIndexChanged="OnTypeFilterChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>All</x:String>
+                    <x:String>Entree</x:String>
+                    <x:String>Side</x:String>
+                    <x:String>Drink</x:String>
+                    <x:String>Dessert</x:String>
+                    <x:String>Appetizer</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Switch x:Name="sizeSwitch" Toggled="OnSizeSwitchToggled"/>
+        <Label Text="Only show items with sizes" />
+
+        <!-- Menu Items -->
+        <CollectionView x:Name="menuItemsList" SelectionMode="Single" HeightRequest="400">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="Black" StrokeThickness="1" Margin="5">
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="{Binding ItemName}" FontSize="18" FontAttributes="Bold"/>
+                            <Label Text="{Binding ItemPrice, StringFormat='Price: {0:C}'}"/>
+                            <Label Text="{Binding Type}" />
+                            <Label Text="{Binding HasSize, StringFormat='Has Size: {0}'}"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Action Buttons -->
+        <HorizontalStackLayout Spacing="20">
+            <Button Text="Add New Item" Clicked="OnAddItemClicked"/>
+            <Button Text="Edit Selected" Clicked="OnEditItemClicked"/>
+            <Button Text="Delete Selected" Clicked="OnDeleteItemClicked"/>
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>
