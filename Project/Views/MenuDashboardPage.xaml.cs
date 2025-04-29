@@ -46,10 +46,13 @@ public partial class MenuDashboardPage : ContentPage
             filtered = filtered.Where(i => i.ItemName.Contains(searchBar.Text, StringComparison.OrdinalIgnoreCase));
 
         // Filter by type
-        if (typeFilter.SelectedIndex > 0)
+        if (typeFilter.SelectedIndex > 0) // 0 is "All", so skip filtering
         {
-            var selectedType = (MenuItemType)(typeFilter.SelectedIndex - 1);
-            filtered = filtered.Where(i => i.Type == selectedType);
+            string selectedTypeString = (string)typeFilter.SelectedItem;
+            if (Enum.TryParse(selectedTypeString.ToUpper(), out MenuItemType selectedType))
+            {
+                filtered = filtered.Where(i => i.Type == selectedType);
+            }
         }
 
         // Filter by HasSize
@@ -59,39 +62,77 @@ public partial class MenuDashboardPage : ContentPage
         menuItemsList.ItemsSource = filtered.ToList();
     }
 
-    private async void OnAddItemClicked(object sender, EventArgs e)
-    {
-        var newItem = new MenuItem
-        {
-            ItemName = "New Item",
-            ItemPrice = 0.0M,
-            HasSize = false,
-            Size = MenuSizeType.SMALL,
-            Type = MenuItemType.ENTREE,
-            Icon = "eagle.png"
-        };
 
-        _menuController.AddMenuItem(newItem);
-        LoadItems();
-        await DisplayAlert("Added", "New menu item added.", "OK");
+  private async void OnAddItemClicked(object sender, EventArgs e)
+{
+    // Ask for item name
+    string itemName = await DisplayPromptAsync("New Menu Item", "Enter the name of the item:");
+    if (string.IsNullOrWhiteSpace(itemName))
+    {
+        await DisplayAlert("Error", "Item name cannot be empty.", "OK");
+        return;
     }
 
-    private async void OnEditItemClicked(object sender, EventArgs e)
+    // Ask for item price
+    string priceInput = await DisplayPromptAsync("New Menu Item", "Enter the price of the item:");
+    if (!decimal.TryParse(priceInput, out decimal itemPrice))
     {
-        var selectedItem = menuItemsList.SelectedItem as MenuItem;
-        if (selectedItem != null)
-        {
-            // Simple example: increase price
-            selectedItem.ItemPrice += 1.00M;
-            _menuController.UpdateMenuItem(selectedItem);
-            LoadItems();
-            await DisplayAlert("Edited", "Item updated (Price +1)", "OK");
-        }
-        else
-        {
-            await DisplayAlert("Error", "Select an item first.", "OK");
-        }
+        await DisplayAlert("Error", "Invalid price entered.", "OK");
+        return;
     }
+
+    // Create new item
+    var newItem = new MenuItem
+    {
+        ItemName = itemName,
+        ItemPrice = itemPrice,
+        HasSize = false,  // You can ask for more details if needed
+        Size = MenuSizeType.SMALL,  // Default size
+        Type = MenuItemType.ENTREE, // Default type
+        Icon = "eagle.png"           // Default icon
+    };
+
+    _menuController.AddMenuItem(newItem);
+    LoadItems();
+    await DisplayAlert("Added", "New menu item added.", "OK");
+}
+ private async void OnEditItemClicked(object sender, EventArgs e)
+{
+    var selectedItem = menuItemsList.SelectedItem as MenuItem;
+    if (selectedItem == null)
+    {
+        await DisplayAlert("Error", "Select an item first.", "OK");
+        return;
+    }
+
+    // Ask for new name
+    string newName = await DisplayPromptAsync("Edit Item", "Enter new name:", initialValue: selectedItem.ItemName);
+    if (string.IsNullOrWhiteSpace(newName))
+    {
+        await DisplayAlert("Error", "Name cannot be empty.", "OK");
+        return;
+    }
+
+    // Ask for new price
+    string priceInput = await DisplayPromptAsync("Edit Item", "Enter new price:", initialValue: selectedItem.ItemPrice.ToString());
+    if (!decimal.TryParse(priceInput, out decimal newPrice))
+    {
+        await DisplayAlert("Error", "Invalid price.", "OK");
+        return;
+    }
+
+    // Ask for new type (optional, just keeping same for now)
+    // Optionally you can add another prompt for type and size if needed
+
+    // Update the selected item
+    selectedItem.ItemName = newName;
+    selectedItem.ItemPrice = newPrice;
+
+    _menuController.UpdateMenuItem(selectedItem);
+    LoadItems();
+    await DisplayAlert("Edited", "Item updated successfully.", "OK");
+}
+
 
     private async void OnDeleteItemClicked(object sender, EventArgs e)
     {
