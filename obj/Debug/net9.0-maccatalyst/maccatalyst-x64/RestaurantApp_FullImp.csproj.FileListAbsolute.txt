@@ -305,11 +305,3 @@
 /Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/bin/Debug/net9.0-maccatalyst/maccatalyst-x64/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
 /Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/bin/Debug/net9.0-maccatalyst/maccatalyst-x64/Microsoft.VisualStudio.DesignTools.TapContract.dll
 /Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/bin/Debug/net9.0-maccatalyst/maccatalyst-x64/Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
-/Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/obj/Debug/net9.0-maccatalyst/maccatalyst-x64/resourcestamps/Microsoft.Maui.Controls.HotReload.Forms.stamp
-/Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/obj/Debug/net9.0-maccatalyst/maccatalyst-x64/resourcestamps/Microsoft.VisualStudio.DesignTools.MobileTapContracts.stamp
-/Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/obj/Debug/net9.0-maccatalyst/maccatalyst-x64/resourcestamps/Microsoft.VisualStudio.DesignTools.TapContract.stamp
-/Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/obj/Debug/net9.0-maccatalyst/maccatalyst-x64/resourcestamps/Microsoft.VisualStudio.DesignTools.XamlTapContract.stamp
-/Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/obj/Debug/net9.0-maccatalyst/maccatalyst-x64/resourcestamps/SQLite-net.stamp
-/Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/obj/Debug/net9.0-maccatalyst/maccatalyst-x64/resourcestamps/SQLitePCLRaw.batteries_v2.stamp
-/Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/obj/Debug/net9.0-maccatalyst/maccatalyst-x64/resourcestamps/SQLitePCLRaw.core.stamp
-/Users/sandeshbhattarai/RestaurantApp_FullImp/RestaurantApp_FullImp/obj/Debug/net9.0-maccatalyst/maccatalyst-x64/resourcestamps/SQLitePCLRaw.provider.e_sqlite3.stamp
