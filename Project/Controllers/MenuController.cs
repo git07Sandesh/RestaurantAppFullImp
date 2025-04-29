@@ -9,9 +9,14 @@ namespace RestaurantApp_FullImp.Project.Controllers
         private List<MenuItem> _menuItems;
         private DatabaseHelper _database;
 
+
         public MenuController()
         {
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "restaurant.db3");
+             if (File.Exists(dbPath))
+            {
+                File.Delete(dbPath);
+            }
             _database = new DatabaseHelper(dbPath);
 
             _menuItems = LoadMenuItems();
@@ -31,12 +36,17 @@ namespace RestaurantApp_FullImp.Project.Controllers
             }
         }
 
-        public void AddMenuItem(MenuItem item)
-        {
-            var dbItem = ToDBModel(item);
-            _database.AddMenuItem(dbItem);
-            _menuItems.Add(item);
-        }
+       public void AddMenuItem(MenuItem item)
+    {
+        var dbItem = ToDBModel(item);
+        _database.AddMenuItem(dbItem);
+
+        // Important: Set the DatabaseID after inserting
+        item.DatabaseID = dbItem.DatabaseID; 
+
+        _menuItems.Add(item);
+    }
+
 
         public void UpdateMenuItem(MenuItem item)
         {
@@ -63,19 +73,17 @@ namespace RestaurantApp_FullImp.Project.Controllers
 
             if (dbItems.Count == 0)
             {
-                // No data in database? Populate starter menu
                 var starterItems = setup_menu();
                 foreach (var item in starterItems)
                 {
-                    AddMenuItem(item);
+                    AddMenuItem(item); // this will now also save to DB
                 }
-                return starterItems;
+                dbItems = _database.GetMenuItems(); // reload after adding starter items
             }
-            else
-            {
-                return dbItems.Select(x => ToAppModel(x)).ToList();
-            }
+
+            return dbItems.Select(x => ToAppModel(x)).ToList();
         }
+
 
         // Convert MenuItemDB (database) -> MenuItem (app)
         private MenuItem ToAppModel(MenuItemDB dbItem)
